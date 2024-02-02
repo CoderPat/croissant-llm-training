@@ -1,0 +1,63 @@
+global {
+    ducttape_output=/gpfsstore/rech/hxz/ued79zb/croissllm-outs-v2/
+
+    repo=/linkhome/rech/genrce01/ued79zb/repos/tower-llm-training
+    external_model_dir=(
+                Size:
+                    base=/gpfsstore/rech/hxz/ued79zb/croissllm-models-v2/base
+    )
+    external_tensorboard=(
+                Size:
+                    base=/gpfsstore/rech/hxz/ued79zb/croissllm-tensorboard-v2/base
+    )
+
+    .submitter=scslurm
+
+    dump_account="hxz@cpu"
+    dump_partition=cpu_p1
+    dump_qos=none
+    dump_time="19:59:00"
+    dump_cpus=32
+    dump_mem=none
+
+    traintok_account="hxz@cpu"
+    traintok_partition=cpu_p1
+    traintok_time="12:00:00"
+    traintok_cpus=48
+    traintok_mem=none
+
+    preproc_account="hxz@cpu"
+    preproc_partition=cpu_p1
+    preproc_time="20:00:00"
+    preproc_cpus=38
+    preproc_mem=none
+
+    train_account="hxz@a100"
+    train_C="a100"
+    train_partition=none
+    train_reservation="hxz"
+    train_qos="qos_gpu-gc"
+    train_time="92:00:00"
+    train_nodes=30
+    train_gres="gpu:8"
+    train_cpus=40
+    train_mem=none
+
+    eval_account="hxz@a100"
+    eval_C="a100"
+    eval_partition=none
+    eval_time="2:00:00"
+    eval_gres="gpu:1"
+    eval_cpus=16
+    eval_mem=none
+
+    convert_account="hxz@a100"
+    convert_C="a100"
+    convert_partition=none
+    convert_reservation=none
+    convert_time="1:00:00"
+    convert_gres="gpu:1"
+    convert_cpus=16
+    convert_mem=none
+
+}

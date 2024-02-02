@@ -1,0 +1,6 @@
+hidden_size: 512
+ffn_hidden_size: 2048
+num_layers: 6
+num_attention_heads: 8
+seq_length: 2048
+num_kv_heads: 8

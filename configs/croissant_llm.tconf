@@ -1,0 +1,139 @@
+import "croissant_llm_uservars.tconf"
+
+global {
+    ducttape_experimental_imports=true
+    ducttape_experimental_submitters=true
+    ducttape_experimental_multiproc=true
+
+    # set this to true if you want to restart from a previous checkpoint saved in external_model_dir
+    # WARNING: setting this to false will delete the contents of external_model_dir
+    external_resume=true
+
+    dataset_name=(
+        Dataset: 
+            french_303b_1 french_303b_2 french_303b_3
+            english_660b_11 english_660b_12 english_660b_13
+            english_660b_21 english_660b_22 english_660b_23
+            aligned_36b
+            code_140b
+    )
+    dataset_path=(
+        Dataset:
+            french_303b_1=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/french_303b_1
+            french_303b_2=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/french_303b_2
+            french_303b_3=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/french_303b_3
+            english_660b_11=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/english_660B_11
+            english_660b_12=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/english_660B_12
+            english_660b_13=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/english_660B_13
+            english_660b_21=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/english_660B_21
+            english_660b_22=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/english_660B_22
+            english_660b_23=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/subsplits/english_660B_23
+            aligned_36b=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/aligned_36b
+            code_140b=/gpfsstore/rech/hxz/ued79zb/croissllm-data-v2/croissant_data/code_140b
+    )
+    hf_dataset=true
+    dataset_dirs=""
+    dataset_stream=false
+    filter=false
+    percentile=50
+    n_tokens=""
+    n_tokens_test=""
+    bilingual=false
+    code=false
+    multiple_valid_sets=true
+
+    datamix_weights=(DataMix: equal=(
+        Dataset:
+            french_303b_1=146 french_303b_2=2025 french_303b_3=1980
+            english_660b_11=606 english_660b_12=881 english_660b_13=880
+            english_660b_21=536 english_660b_22=529 english_660b_23=719
+            aligned_36b=732
+            code_140b=967
+    ))
+
+    # tokenization arguments
+    external_tokenizer=manu/tok-fr-en-code
+
+    # training tokenizer parameters
+    # WARNING: not passed to the rest of the pipeline
+    # (since this tape uses manu's tokenizer)
+    # export and pass as external_tokenizer for now
+    vocab_size=32000
+    tokenizer_words_per_source=""
+    extra_tokens=1000
+    pre_tokenizer=whitespace
+
+    eval_metric=loss
+    eval_iteration=(EvalIteration: none="")
+    
+    # model parameters
+    model_config=(Size: base=llama2_1b3)
+
+    # have branch for all steps (up to 190k)
+    convert_iteration=(
+        ConvertIteration: 
+            none=""
+            5k=5000
+            10k=10000
+            15k=15000
+            20k=20000
+            25k=25000
+            30k=30000
+            35k=35000
+            40k=40000
+            45k=45000
+            50k=50000
+            55k=55000
+            60k=60000
+            65k=65000
+            70k=70000
+            75k=75000
+            80k=80000
+            85k=85000
+            90k=90000
+            95k=95000
+            100k=100000
+            105k=105000
+            110k=110000
+            115k=115000
+            120k=120000
+            125k=125000
+            130k=130000
+            135k=135000
+            140k=140000
+            145k=145000
+            150k=150000
+            155k=155000
+            160k=160000
+            165k=165000
+            170k=170000
+            175k=175000
+            180k=180000
+            185k=185000
+    )
+
+
+    # training parameters
+    train_steps=190000
+    batch_size=7680
+    grad_accum_steps=4
+
+    lr=3e-4
+    min_lr=1e-5
+    lr_warmup_steps=1000
+    weight_decay=0.1
+    grad_clip=1.0
+    save_interval=5000
+    eval_interval=500
+
+    # distributed training parameters
+    nodes=30
+    gpus=8
+    tp=1
+    pp=1
+    zero_stage=1
+    master_addr=localhost
+    master_port=29700
+    cpu_workers=32
+    seed=911
+}
