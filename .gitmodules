@@ -1,0 +1,3 @@
+[submodule "Megatron-DeepSpeed"]
+	path = Megatron-DeepSpeed
+	url = https://github.com/deep-spin/Megatron-DeepSpeed/
