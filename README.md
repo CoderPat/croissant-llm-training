@@ -45,5 +45,5 @@ Then, you can ran the one of the specified pipelines in `main.tape` by running d
 
 ```bash
 conda activate towerllm-env
-ducttape main.tape -C configs/tower_llm.conf 
+ducttape main.tape -C configs/croissant_llm.conf 
 ```
