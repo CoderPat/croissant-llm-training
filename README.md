@@ -41,7 +41,7 @@ global {
 
 We provide a template for our user variables used in JeanZay.
 
-Then, you can ran the one of the specified pipelines in `main.tape` by running ducttape with the corresponding configuration file:
+Then, you can run the one of the specified pipelines in `main.tape` by running ducttape with the corresponding configuration file:
 
 ```bash
 conda activate towerllm-env
